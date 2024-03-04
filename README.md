@@ -1,2 +1,2 @@
 ﻿# React-Tic-Tac-Toe
-<iframe src="https://MuliMaor.github.io/React-Tic-Tac-Toe"></iframe>
+<iframe src="https://mulimaor.github.io/React-Tic-Tac-Toe/"></iframe>
