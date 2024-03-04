@@ -48,10 +48,10 @@ function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const [playerNames, setPlayerNames] = useState(PLAYERS);
 
-  const activePlayer = derivedActivePlayer(gameTurns);
   const gameBoard = derivedGameBoard(gameTurns);
   const winner = derivedWinner(gameBoard, playerNames);
   const isDraw = !winner && gameTurns.length === 9;
+  const activePlayer = (!winner && !isDraw)&&derivedActivePlayer(gameTurns);
 
   function restartGame() {
     setGameTurns([]);
