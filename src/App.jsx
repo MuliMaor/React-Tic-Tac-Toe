@@ -7,7 +7,7 @@ import GameOverScreen from "./comonents/GameOverScreen";
 
 import { WINNING_COMBINATIONS } from "./winning-combinations";
 
-const PLAYERS = {X : "Player 1", O : "Player 2"};
+const PLAYERS = { X: "Player 1", O: "Player 2" };
 
 const INITIAL_GAME_BOARD = [
   [null, null, null],
@@ -51,7 +51,7 @@ function App() {
   const gameBoard = derivedGameBoard(gameTurns);
   const winner = derivedWinner(gameBoard, playerNames);
   const isDraw = !winner && gameTurns.length === 9;
-  const activePlayer = (!winner && !isDraw)&&derivedActivePlayer(gameTurns);
+  const activePlayer = (!winner && !isDraw) && derivedActivePlayer(gameTurns);
 
   function restartGame() {
     setGameTurns([]);
@@ -62,14 +62,16 @@ function App() {
   }
 
   function handleSelectSquare(rowIndex, colIndex) {
-    //set the array representing the turns log to be:
-    //a copy of itself, but insert as a first element this last move; which player played what square
-    setGameTurns(prevGameTurns => {
-      const currentPlayer = derivedActivePlayer(prevGameTurns);
-      const updatedGameTurns = [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevGameTurns];
+    if (!winner && !isDraw) {
+      //set the array representing the turns log to be:
+      //a copy of itself, but insert as a first element this last move; which player played what square
+      setGameTurns(prevGameTurns => {
+        const currentPlayer = derivedActivePlayer(prevGameTurns);
+        const updatedGameTurns = [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevGameTurns];
 
-      return updatedGameTurns;
-    });
+        return updatedGameTurns;
+      });
+    }
   }
   //NOTE!
   //its recommanded to pass an object, array, etc to a useState by value, not by reference.
